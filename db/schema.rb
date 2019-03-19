@@ -12,7 +12,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_319_102_045) do
+ActiveRecord::Schema.define(version: 20_190_319_124_022) do
+  create_table 'aggregate_logs', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.integer 'user_id', null: false
+    t.integer 'event_id', null: false
+    t.float 'laugh_stg', null: false
+    t.integer 'rare_encount_point', null: false
+    t.integer 'taken_picture_with_many_people_point', null: false
+    t.integer 'take_good_picture_point', null: false
+    t.integer 'between_product_interact_point', null: false
+    t.integer 'divercity_point', null: false
+    t.integer 'score'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
   create_table 'bunches', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.integer 'leader', null: false
     t.datetime 'created_at', null: false
