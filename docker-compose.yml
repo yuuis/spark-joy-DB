@@ -19,6 +19,7 @@ services:
           MYSQL_PASSWORD: root
           MYSQL_DATABASE: test
           MYSQL_HOST: db
+          RAILS_ENV: development
         volumes:
             - ".:/rails"
         ports:
