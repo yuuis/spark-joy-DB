@@ -37,8 +37,8 @@
       * `cameraman`: ログイン中のuser_id
 
 ### 採点結果
-#### バンチごと
   * front(採点結果) → db
+#### バンチごと
   * request:
     * method: `GET`
     * url `base_url/api/bunchs/:bunch_id`
@@ -76,9 +76,9 @@
 
 ##### バンチ戦ごとの絞り込み
   * バンチごと、ユーザごと共に`event`パラメタを追加する
-  * example
-    * 前回バンチ戦(仮にid=4)のバンチごとの得点を取得する
-      * GET: `base_url/api/bunchs/4?event=4`
+      * example
+        * 前回バンチ戦(仮にid=4)のバンチごとの得点を取得する
+          * GET: `base_url/api/bunchs/4?event=4`
 
 ### 採点リクエスト
   * db → 採点model
