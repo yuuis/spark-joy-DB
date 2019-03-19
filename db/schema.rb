@@ -21,13 +21,14 @@ ActiveRecord::Schema.define(version: 20_190_319_102_045) do
 
   create_table 'events', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.string 'name', null: false
+    t.date 'date', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end
 
   create_table 'pictures', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.integer 'event_id', null: false
-    t.integer 'cameraman', null: false
+    t.integer 'taken_by', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end
@@ -55,10 +56,11 @@ ActiveRecord::Schema.define(version: 20_190_319_102_045) do
   create_table 'users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.string 'name', null: false
     t.float 'smile_std', null: false
-    t.integer 'bunch_id', null: false
+    t.integer 'bunch_id'
     t.integer 'product_team_id', null: false
     t.integer 'point', default: 0, null: false
     t.integer 'role_id', null: false
+    t.string 'person_id', null: false
     t.date 'birthday', null: false
     t.date 'join_date', null: false
     t.datetime 'created_at', null: false
