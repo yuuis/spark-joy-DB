@@ -28,7 +28,8 @@
             "smile_point": 0.7
           }
         ],
-        "cameraman": 2
+        "taken_by": 2,
+        "event_id": 1
       }
       ```
       * `people`:
