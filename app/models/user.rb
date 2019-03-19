@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :product_team_id, presence: true
   validates :point, presence: true
   validates :role_id, presence: true
+  validates :person_id, presence: true
   validates :join_date, presence: true
 
   belongs_to :role
