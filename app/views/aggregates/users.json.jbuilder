@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.leader_id @bunch.leader
 json.users @users do |user|
   json.id user.id

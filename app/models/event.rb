@@ -16,12 +16,16 @@ class Event < ApplicationRecord
     @take_good_picture_point = aggregate_take_good_picture_point
     @between_product_interact_point = aggregate_between_product_interact_point
     @diversity_point = aggregate_diversity_point
+
+    [@laugh_std, @rare_eoncount_point, @taken_picture_with_many_people_point, @take_good_picture_point, @between_product_interact_point, @diversity_point]
   end
 
   private
 
   def aggregate_laugh_std
-    format('%.1f', @user_pictures.sum(:smile_point) / @user_pictures.count)
+    return format('%.1f', @user_pictures.average(:smile_point) - @user.smile_std).to_f unless @user_pictures.blank?
+
+    0
   end
 
   def aggregate_rare_eoncount_point
@@ -30,8 +34,8 @@ class Event < ApplicationRecord
       sum[user_reflect.with] = UserReflect.where(user_id: @user.id).where(with: user_reflect.with).count
     end
 
-    most_relation = sum.max_by { |a| a[1] }[0]
-    point = sum.find { |k, _v| k > sum[most_relation] / 20 }.count
+    most_relation = sum.blank? ? 0 : sum.max_by { |a| a[1] }[0]
+    point = sum.blank? ? 0 : sum.find { |k, _v| k > sum[most_relation] / 20 }.count
 
     return point if point < 5
 
@@ -84,7 +88,7 @@ class Event < ApplicationRecord
       diff += ((Date.today.strftime(date_format).to_i - @user.birthday.strftime(date_format).to_i) / 10_000 - (Date.today.strftime(date_format).to_i - up.user.birthday.strftime(date_format).to_i) / 10_000).abs
     end
 
-    point = diff / sum.count
+    point = sum.blank? ? 0 : diff / sum.count
 
     return point if point < 10
 

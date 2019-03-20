@@ -64,6 +64,11 @@ class AggregatesController < ApplicationController
     render 'users', formats: 'json', handlers: 'jbuilder'
   end
 
+  def aggregate
+    @event = Event.find(params[:event_id])
+    @points = User.all.map { |user| @event.aggregate_user(user.id) }
+  end
+
   private
 
   def set_user
