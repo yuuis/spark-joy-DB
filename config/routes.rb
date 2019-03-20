@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     post 'aggregate' => 'events#aggregate'
     get 'aggregate/events/:event_id' => 'aggregates#events'
     get 'bunches/log/:user_id' => 'aggregates#bunches'
+    get 'bunches/users/:bunch_id' => 'aggregates#users'
   end
 end
