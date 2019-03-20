@@ -15,7 +15,7 @@ class Event < ApplicationRecord
     @taken_picture_with_many_people_point = aggregate_taken_picture_with_many_people_point
     @take_good_picture_point = aggregate_take_good_picture_point
     @between_product_interact_point = aggregate_between_product_interact_point
-    # @diversity_point = aggregate_diversity_point
+    @diversity_point = aggregate_diversity_point
   end
 
   private
@@ -66,7 +66,23 @@ class Event < ApplicationRecord
     return 10
   end
 
-  def diversity_point
+  def aggregate_diversity_point
+    sum = []
+    @user_pictures.each do |user_picture|
+      sum += (UserPicture.where('picture_id = ?', user_picture.picture_id).where('user_id != ?', @user.id))
+    end
 
+    date_format = '%Y%m%d'
+
+    diff = 0
+    sum.each do |up|
+      diff += ((Date.today.strftime(date_format).to_i - @user.birthday.strftime(date_format).to_i) / 10000 - (Date.today.strftime(date_format).to_i - up.user.birthday.strftime(date_format).to_i) / 10000).abs
+    end
+
+    point = diff / sum.count
+
+    binding.pry
+    return point if point < 15
+    return 15
   end
 end
