@@ -2,7 +2,6 @@
 
 ## api specification
 ### 写真の保存
-  * front(camera) → db
   * request: 
     * method: `POST`
     * url: `base_url/api/pictures`
@@ -37,69 +36,90 @@
         * `smile_point`: faceApiから帰ってきたhappiness値
       * `cameraman`: ログイン中のuser_id
 
-### 採点結果
-  * front(採点結果) → db
-#### バンチごと
+### イベント一覧
   * request:
-    * method: `GET`
-    * url `base_url/api/bunches/:bunch_id`
-  * response:
-    * body:
+    * method: `POST`
+    * url: `base_url/api/events`
+    * header: `Content-Type: application/json`
+  * response
+    * body: 
       ```json
+      [
         {
           "id": 1,
-          "point": 25,
-          "leader": 35,
-          "user": [
-            {
-              "id": 1,
-              "name": "Alice",
-              "birthday": "1997-01-01",
-              "product_team_id": 2,
-              "point": 5,
-              "role_id": 3,
-              "join_date": "2018-01-01"
-            },
-            {
-              "id": 2,
-              "name": "Bob",
-              "birthday": "1997-01-01",
-              "product_team_id": 2,
-              "point": 5,
-              "role_id": 3,
-              "join_date": "2018-01-01"
-            }
-          ]
+          "name": "人狼バンチ戦",
+          "date": "2019-01"
+        },
+        {
+          "id": 2,
+          "name": "消しゴムバトルバンチ戦",
+          "date": "2019-02"
+        },
+        {
+          "id": 3,
+          "name": "開発合宿バンチ戦",
+          "date": "2019-03"
         }
+      ]
       ```
-      * `id`: バンチのid
-      * `point`: バンチの現在の累計得点
-      * `leader`: バンチのリーダー
 
-#### ユーザごと
+### 採点
+#### イベント
   * request:
     * method: `GET`
-    * url `base_url/api/users/:user_id`
-  * response:
+    * url: `base_url/api/aggregate/events/:event_id?user_id=:user_id`
+  * response
     * body:
       ```json
-        {
-          "id": 1,
-          "point": 5,
-          "bunch_id": 2,
-          "product_team_id": 2
-        }
+      {
+        "user_points": {
+          "laugh_std": 0.4,
+          "rare_encount_point": 3,
+          "taken_picture_with_many_people_point": 7,
+          "take_good_picture_point": 4,
+          "between_product_interact_point": 8,
+          "divercity_point": 7,
+          "score": 6
+        },
+        "user_score": 6,
+        "bunch_score": 6
+      }
       ```
-      * `id`: ユーザのid
-      * `point`: ユーザの累計得点
-      * `bunch_id`: ユーザの所属バンチのid
-      * `product_team_id`: ユーザの所属チームのid
 
-##### バンチ戦ごとの絞り込み
-  * バンチごと、ユーザごと共に`event`パラメタを追加する
-      * example
-        * 前回バンチ戦(仮にid=4)のバンチごとの得点を取得する
-          * GET: `base_url/api/bunchs/4?event=4`
+#### バンチごとの記録
+  * request:
+    * method: `GET`
+    * url: `base_url/api/bunches/log/:user_id`
+  * response
+    * body:
+      ```json
+      {
+        "bunch_score_sum": 25,
+        "user_score_sum": 12,
+        "bunch_scores": [
+          {
+            "date": "2019-01",
+            "score": 12
+          },
+          {
+            "date": "2019-02",
+            "score": 13
+          }
+        ],
+        "user_scores": [
+          {
+            "date": "2019-01",
+            "score": 6
+          },
+          {
+            "date": "2019-02",
+            "score": 6
+          }
+        ]
+      }
+      ```
+
+#### ユーザごとの情報
 
 ### 採点リクエスト
   * db → 採点model

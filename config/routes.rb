@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     resources :events, only: %i[index]
     post 'aggregate' => 'events#aggregate'
     get 'aggregate/events/:event_id' => 'aggregates#events'
+    get 'bunches/log/:user_id' => 'aggregates#bunches'
   end
 end
