@@ -42,14 +42,34 @@
 #### バンチごと
   * request:
     * method: `GET`
-    * url `base_url/api/bunchs/:bunch_id`
+    * url `base_url/api/bunches/:bunch_id`
   * response:
     * body:
       ```json
         {
           "id": 1,
           "point": 25,
-          "leader": 35
+          "leader": 35,
+          "user": [
+            {
+              "id": 1,
+              "name": "Alice",
+              "birthday": "1997-01-01",
+              "product_team_id": 2,
+              "point": 5,
+              "role_id": 3,
+              "join_date": "2018-01-01"
+            },
+            {
+              "id": 2,
+              "name": "Bob",
+              "birthday": "1997-01-01",
+              "product_team_id": 2,
+              "point": 5,
+              "role_id": 3,
+              "join_date": "2018-01-01"
+            }
+          ]
         }
       ```
       * `id`: バンチのid

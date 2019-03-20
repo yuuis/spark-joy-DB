@@ -9,7 +9,6 @@ class AggregateLog < ApplicationRecord
   validates :take_good_picture_point, presence: true
   validates :between_product_interact_point, presence: true
   validates :divercity_point, presence: true
-  validates :score
 
   belongs_to :user
   belongs_to :event
