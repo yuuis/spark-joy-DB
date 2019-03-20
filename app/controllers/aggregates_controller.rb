@@ -69,8 +69,9 @@ class AggregatesController < ApplicationController
 
     @event = Event.find(params[:event_id])
     @points = User.all.map { |user| @event.aggregate_user(user.id) }
+    binding.pry
 
-    res = Net::HTTP.post_form(URI.parse(ENV['MODEL_HOST']),@points)
+    # res = Net::HTTP.post_form(URI.parse(ENV['MODEL_HOST']),@points)
   end
 
   private

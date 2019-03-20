@@ -17,6 +17,9 @@ class Event < ApplicationRecord
     @between_product_interact_point = aggregate_between_product_interact_point
     @diversity_point = aggregate_diversity_point
 
+    AggregateLog.create(user_id: user_id, event_id: id, laugh_std: @laugh_std, rare_encount_point: @rare_eoncount_point,
+                        taken_picture_with_many_people_point: @taken_picture_with_many_people_point,
+                        between_product_interact_point: @between_product_interact_point, divercity_point: @diversity_point)
     [@laugh_std, @rare_eoncount_point, @taken_picture_with_many_people_point, @take_good_picture_point, @between_product_interact_point, @diversity_point]
   end
 
