@@ -49,9 +49,10 @@ class Event < ApplicationRecord
   end
 
   def aggregate_take_good_picture_point
-    @user_pictures.each do |user_picture|
-      format("%.1f", @user_pictures.sum(:smile_point) / @user_pictures.count)
-    end
+      point = Picture.where('taken_by = ?', @user.id).count
+
+      return point if point < 5
+      return 5
   end
 
   def aggregate_between_product_interact_point
