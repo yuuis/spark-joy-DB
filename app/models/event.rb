@@ -21,7 +21,7 @@ class Event < ApplicationRecord
   private
 
   def aggregate_laugh_std
-    format("%.1f", @user_pictures.sum(:smile_point) / @user_pictures.count)
+    format('%.1f', @user_pictures.sum(:smile_point) / @user_pictures.count)
   end
 
   def aggregate_rare_eoncount_point
@@ -30,29 +30,32 @@ class Event < ApplicationRecord
       sum[user_reflect.with] = UserReflect.where(user_id: @user.id).where(with: user_reflect.with).count
     end
 
-    most_relation = sum.max{ |x, y| x[1] <=> y[1] }[0]
-    point = sum.find { |k,v| k > sum[most_relation] / 20 }.count
+    most_relation = sum.max_by { |a| a[1] }[0]
+    point = sum.find { |k, _v| k > sum[most_relation] / 20 }.count
 
     return point if point < 5
-    return 5
+
+    5
   end
 
   def aggregate_taken_picture_with_many_people_point
     sum = []
     @user_pictures.each do |user_picture|
-      sum += (UserPicture.where('picture_id = ?', user_picture.picture_id).where('user_id != ?', @user.id))
+      sum += UserPicture.where('picture_id = ?', user_picture.picture_id).where('user_id != ?', @user.id)
     end
-    point = sum.uniq { |up| up.user_id }.count
+    point = sum.uniq(&:user_id).count
 
     return point if point < 15
-    return 15
+
+    15
   end
 
   def aggregate_take_good_picture_point
-      point = Picture.where('taken_by = ?', @user.id).count
+    point = Picture.where('taken_by = ?', @user.id).count
 
-      return point if point < 5
-      return 5
+    return point if point < 5
+
+    5
   end
 
   def aggregate_between_product_interact_point
@@ -61,29 +64,30 @@ class Event < ApplicationRecord
       u_pic = UserPicture.where('picture_id = ?', user_picture.picture_id).where('user_id != ?', @user.id)
       sum += u_pic.joins(:user).references(:user).where('users.product_team_id != ?', @user.product_team_id)
     end
-    point = sum.uniq { |up| up.user_id }.count
+    point = sum.uniq(&:user_id).count
 
     return point if point < 10
-    return 10
+
+    10
   end
 
   def aggregate_diversity_point
     sum = []
     @user_pictures.each do |user_picture|
-      sum += (UserPicture.where('picture_id = ?', user_picture.picture_id).where('user_id != ?', @user.id))
+      sum += UserPicture.where('picture_id = ?', user_picture.picture_id).where('user_id != ?', @user.id)
     end
 
     date_format = '%Y%m%d'
 
     diff = 0
     sum.each do |up|
-      diff += ((Date.today.strftime(date_format).to_i - @user.birthday.strftime(date_format).to_i) / 10000 - (Date.today.strftime(date_format).to_i - up.user.birthday.strftime(date_format).to_i) / 10000).abs
+      diff += ((Date.today.strftime(date_format).to_i - @user.birthday.strftime(date_format).to_i) / 10_000 - (Date.today.strftime(date_format).to_i - up.user.birthday.strftime(date_format).to_i) / 10_000).abs
     end
 
     point = diff / sum.count
 
-    binding.pry
-    return point if point < 15
-    return 15
+    return point if point < 10
+
+    10
   end
 end

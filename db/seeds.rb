@@ -43,7 +43,6 @@ Event.create(name: '人狼バンチ戦', date: Date.new(2019, 1, 1))
 Event.create(name: '消しゴムバトルバンチ戦', date: Date.new(2019, 2, 1))
 Event.create(name: '開発合宿バンチ戦', date: Date.new(2019, 3, 1))
 
-
 Picture.create(event_id: 1, taken_by: 5)
 UserPicture.create(user_id: 1, picture_id: 1, smile_point: 0.8)
 UserPicture.create(user_id: 2, picture_id: 1, smile_point: 0.6)
