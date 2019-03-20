@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :pictures, only: %i[create]
     resources :events, only: %i[index]
     post 'aggregate' => 'events#aggregate'
+    get 'aggregate/events/:event_id' => 'aggregates#events'
   end
 end
