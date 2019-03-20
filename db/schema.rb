@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20_190_320_051_449) do
   create_table 'aggregate_logs', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.integer 'user_id', null: false
     t.integer 'event_id', null: false
-    t.float 'laugh_stg', null: false
+    t.float 'laugh_std', null: false
     t.integer 'rare_encount_point', null: false
     t.integer 'taken_picture_with_many_people_point', null: false
     t.integer 'take_good_picture_point', null: false

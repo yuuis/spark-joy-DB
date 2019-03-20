@@ -11,6 +11,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    render json: @events, except:[:created_at, :updated_at]
+    render json: @events, except: %i[created_at updated_at]
   end
 end
