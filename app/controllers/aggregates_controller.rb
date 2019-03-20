@@ -64,6 +64,15 @@ class AggregatesController < ApplicationController
     render 'users', formats: 'json', handlers: 'jbuilder'
   end
 
+  def aggregate
+    require 'net/http'
+
+    @event = Event.find(params[:event_id])
+    @points = User.all.map { |user| @event.aggregate_user(user.id) }
+
+    res = Net::HTTP.post_form(URI.parse(ENV['MODEL_HOST']),@points)
+  end
+
   private
 
   def set_user
