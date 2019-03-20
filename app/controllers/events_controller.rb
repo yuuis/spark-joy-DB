@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   def aggregate
     @points
     @event = Event.find(params[:event_id])
     User.all.each do |user|
-      @points = @event.aggregate_user(user.id) # [...]を返す
+      @points = @event.aggregate_user(user.id)
     end
   end
 
