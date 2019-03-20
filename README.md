@@ -120,6 +120,30 @@
       ```
 
 #### ユーザごとの情報
+  * request:
+    * method: `GET`
+    * url: `base_url/api/bunches/users/:bunch_id`
+  * response
+    * body:
+      ```json
+        {
+          "leader_id": 1,
+          "users": [
+            {
+              "id": 1,
+              "name": "ゼブラ",
+              "product_team_name": "growlio",
+              "score_sum": 12
+            },
+            {
+              "id": 2,
+              "name": "ガル",
+              "product_team_name": "dAd",
+              "score_sum": 13
+            }
+         ]
+       }
+      ```
 
 ### 採点リクエスト
   * db → 採点model

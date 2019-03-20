@@ -57,6 +57,13 @@ class AggregatesController < ApplicationController
     render 'bunches', formats: 'json', handlers: 'jbuilder'
   end
 
+  def users
+    @bunch = Bunch.find(params[:bunch_id])
+    @users = @bunch.users
+
+    render 'users', formats: 'json', handlers: 'jbuilder'
+  end
+
   private
 
   def set_user
