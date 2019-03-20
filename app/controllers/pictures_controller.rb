@@ -18,6 +18,6 @@ class PicturesController < ApplicationController
     people.permutation(2) do |p|
       UserReflect.create(user_id: p[0], with: p[1])
     end
-    render json: { 'result': 'ok' }
+    render json: { 'result' => 'ok' }
   end
 end

@@ -13,4 +13,5 @@ class User < ApplicationRecord
   belongs_to :bunch, optional: true
   has_many :user_pictures
   has_many :pictures, through: :user_pictures
+  has_many :aggregate_logs
 end
