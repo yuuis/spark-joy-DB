@@ -66,21 +66,38 @@ class AggregatesController < ApplicationController
 
   def aggregate
     require 'net/http'
+    require 'uri'
+    require 'json'
 
+    @points = {}
     @event = Event.find(params[:event_id])
-    @points = User.all.map { |user| @event.aggregate_user(user.id) }
-    binding.pry
-    
-    req = Net::HTTP::Post.new(URI.parse(ENV['MODEL_HOST'].path)
-    req.set_form_data(@points)
-    req["Content-Type"] = "application/json"
-    res = Net::HTTP.new(url.host, url.port).start do |http|
-      http.request(req)
-    end
+    @points['data'] = User.all.map { |user| @event.aggregate_user(user.id) }
 
-    scores = res.body[:data]
+    # url = URI.parse(ENV['MODEL_HOST'] + '/score')
+    # req = Net::HTTP::Post.new(url.path)
+    # req.set_form_data(@points, ';')
+    # req['Content-Type'] = 'application/json'
+    #
+    # res = Net::HTTP.new(url.host, url.port).start do |http|
+    #   http.request(req)
+    # end
+
+    uri = URI.parse(ENV['MODEL_HOST'] + '/score')
+
+    header = {'Content-Type' => 'application/json'}
+    data = @points
+
+    http = Net::HTTP.new(uri.host, uri.port)
+    req = Net::HTTP::Post.new(uri.request_uri, header)
+    req.body = data.to_json
+
+    res = http.request(req)
+
+    binding.pry
+
+    scores = res.body['data']
     scores.each_with_index do |score, i|
-      AggregateLog.find(i).udpate(score: score)
+      AggregateLog.find(i).udpate(score: score[1])
     end
   end
 

@@ -11,17 +11,17 @@ ProductTeam.create(name: 'growlio')
 
 # users
 @zebra = User.create(name: 'ゼブラ', smile_std: 0.4, birthday: Date.new(1998, 8, 27),
-                     product_team_id: 3, point: 10, role_id: 2, join_date: Date.new(2018, 12, 1), person_id: 'bc488b41-ff45-466a-a1d2-1e2255f5e21e')
+                     product_team_id: 3, point: 10, role_id: 2, join_date: Date.new(2018, 12, 1), person_id: '4fab4a00-d8a2-4e13-8d37-bdb69bf1ec0')
 @gal = User.create(name: 'ガル', smile_std: 0.4, birthday: Date.new(1996, 4, 20),
-                   product_team_id: 1, point: 20, role_id: 2, join_date: Date.new(2019, 1, 1), person_id: '9842d710-313b-413e-abc1-7e7acf41538d')
+                   product_team_id: 1, point: 20, role_id: 2, join_date: Date.new(2019, 1, 1), person_id: 'b871c83b-19ca-4fbf-adb1-a76426bc1447')
 
 @ushi = User.create(name: 'うしちゃん', smile_std: 0.3, birthday: Date.new(1997, 8, 2),
-                    product_team_id: 2, point: 15, role_id: 2, join_date: Date.new(2018, 8, 1), person_id: 'fdabf763-978d-4219-ab82-da4414ba936c')
+                    product_team_id: 2, point: 15, role_id: 2, join_date: Date.new(2018, 8, 1), person_id: '01a6ea2f-860c-4e8f-9ffd-b0cbdbeb575a')
 @rami_chan = User.create(name: 'ラミちゃん', smile_std: 0.3, birthday: Date.new(1995, 5, 19),
-                         product_team_id: 1, point: 20, role_id: 2, join_date: Date.new(2019, 2, 1), person_id: 'b63b6347-cbfc-49f7-85cc-f44270477ee3')
+                         product_team_id: 1, point: 20, role_id: 2, join_date: Date.new(2019, 2, 1), person_id: '97f1fc91-f0d9-4a48-bdb5-2059a772fee7')
 
 @perry = User.create(name: 'ペリー', smile_std: 0.5, birthday: Date.new(1997, 5, 6),
-                     product_team_id: 2, point: 15, role_id: 2, join_date: Date.new(2019, 2, 1), person_id: '0e5586ca-d3d5-4ce7-ad31-6c28025bd1fa')
+                     product_team_id: 2, point: 15, role_id: 2, join_date: Date.new(2019, 2, 1), person_id: '112a7156-60ea-45cc-8323-8c0086ce76b6')
 @ryuk = User.create(name: 'リューク', smile_std: 0.2, birthday: Date.new(1997, 1, 1),
                     product_team_id: 3, point: 20, role_id: 2, join_date: Date.new(2019, 2, 1), person_id: 'd2f464fa-dd48-439d-b240-6c2cf8187571')
 
