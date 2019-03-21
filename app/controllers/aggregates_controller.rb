@@ -84,7 +84,7 @@ class AggregatesController < ApplicationController
 
     uri = URI.parse(ENV['MODEL_HOST'] + '/score')
 
-    header = {'Content-Type' => 'application/json'}
+    header = { 'Content-Type' => 'application/json' }
     data = @points
 
     http = Net::HTTP.new(uri.host, uri.port)

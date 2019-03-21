@@ -74,7 +74,7 @@
       {
         "event_records": {
           "user_points": {
-              "laugh_stg": 1,
+              "laugh_std": 1,
               "rare_encount_point": 2,
               "taken_picture_with_many_people_point": 3,
               "take_good_picture_point": 4,
