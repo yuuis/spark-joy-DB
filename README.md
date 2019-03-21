@@ -72,17 +72,18 @@
     * body:
       ```json
       {
-        "user_points": {
-          "laugh_std": 0.4,
-          "rare_encount_point": 3,
-          "taken_picture_with_many_people_point": 7,
-          "take_good_picture_point": 4,
-          "between_product_interact_point": 8,
-          "divercity_point": 7,
-          "score": 6
-        },
-        "user_score": 6,
-        "bunch_score": 6
+        "event_records": {
+          "user_points": {
+              "laugh_stg": 1,
+              "rare_encount_point": 2,
+              "taken_picture_with_many_people_point": 3,
+              "take_good_picture_point": 4,
+              "between_product_interact_point": 5,
+              "diversity_point": 6
+          },
+          "user_score": 80,
+          "bunch_score": 85
+        }
       }
       ```
 
@@ -94,28 +95,30 @@
     * body:
       ```json
       {
-        "bunch_score_sum": 25,
-        "user_score_sum": 12,
-        "bunch_scores": [
-          {
-            "date": "2019-01",
-            "score": 12
-          },
-          {
-            "date": "2019-02",
-            "score": 13
-          }
-        ],
-        "user_scores": [
-          {
-            "date": "2019-01",
-            "score": 6
-          },
-          {
-            "date": "2019-02",
-            "score": 6
-          }
-        ]
+        "bunch_records": {
+          "bunch_score_sum": 25,
+          "user_score_sum": 12,
+          "bunch_scores": [
+            {
+              "date": "2019-01",
+              "score": 12
+            },
+            {
+              "date": "2019-02",
+              "score": 13
+            }
+          ],
+          "user_scores": [
+              {
+                "date": "2019-01",
+                "score": 6
+              },
+              {
+                "date": "2019-02",
+                "score": 6
+              }
+          ]
+        }
       }
       ```
 
