@@ -72,6 +72,17 @@ class AggregatesController < ApplicationController
     binding.pry
 
     # res = Net::HTTP.post_form(URI.parse(ENV['MODEL_HOST']),@points)
+    req = Net::HTTP::Post.new(URI.parse(ENV['MODEL_HOST'].path)
+    req.set_form_data(@points)
+    req["Content-Type"] = "application/json"
+    res = Net::HTTP.new(url.host, url.port).start do |http|
+      http.request(req)
+    end
+
+    scores = res.body[:data]
+    scores.each_with_index do |score, i|
+      AggregateLog.find(i).udpate(score: score)
+    end
   end
 
   private
