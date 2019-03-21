@@ -73,14 +73,6 @@ class AggregatesController < ApplicationController
     @event = Event.find(params[:event_id])
     @points['data'] = User.all.map { |user| @event.aggregate_user(user.id) }
 
-    # url = URI.parse(ENV['MODEL_HOST'] + '/score')
-    # req = Net::HTTP::Post.new(url.path)
-    # req.set_form_data(@points, ';')
-    # req['Content-Type'] = 'application/json'
-    #
-    # res = Net::HTTP.new(url.host, url.port).start do |http|
-    #   http.request(req)
-    # end
 
     uri = URI.parse(ENV['MODEL_HOST'] + '/score')
 
