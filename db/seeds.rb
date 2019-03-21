@@ -43,7 +43,7 @@ Event.create(name: '人狼バンチ戦', date: Date.new(2019, 1, 1))
 Event.create(name: '消しゴムバトルバンチ戦', date: Date.new(2019, 2, 1))
 Event.create(name: '開発合宿バンチ戦', date: Date.new(2019, 3, 1))
 
-Picture.create(event_id: 1, taken_by: 5)
+Picture.create(event_id: 1, taken_by: 5) # 1
 UserPicture.create(user_id: 1, picture_id: 1, smile_point: 0.8)
 UserPicture.create(user_id: 2, picture_id: 1, smile_point: 0.6)
 UserPicture.create(user_id: 3, picture_id: 1, smile_point: 0.9)
@@ -54,13 +54,13 @@ UserReflect.create(user_id: 2, with: 3)
 UserReflect.create(user_id: 3, with: 1)
 UserReflect.create(user_id: 3, with: 2)
 
-Picture.create(event_id: 1, taken_by: 1)
+Picture.create(event_id: 1, taken_by: 1) # 2
 UserPicture.create(user_id: 2, picture_id: 2, smile_point: 0.4)
 UserPicture.create(user_id: 4, picture_id: 2, smile_point: 0.7)
 UserReflect.create(user_id: 2, with: 4)
 UserReflect.create(user_id: 4, with: 2)
 
-Picture.create(event_id: 1, taken_by: 6)
+Picture.create(event_id: 1, taken_by: 6) # 3
 UserPicture.create(user_id: 1, picture_id: 3, smile_point: 0.8)
 UserPicture.create(user_id: 2, picture_id: 3, smile_point: 0.4)
 UserPicture.create(user_id: 3, picture_id: 3, smile_point: 0.6)
@@ -78,16 +78,16 @@ UserReflect.create(user_id: 4, with: 1)
 UserReflect.create(user_id: 4, with: 2)
 UserReflect.create(user_id: 4, with: 3)
 
-Picture.create(event_id: 1, taken_by: 3)
+Picture.create(event_id: 1, taken_by: 3) # 4
 UserPicture.create(user_id: 5, picture_id: 4, smile_point: 0.7)
 
-Picture.create(event_id: 1, taken_by: 1)
+Picture.create(event_id: 1, taken_by: 1) # 5
 UserPicture.create(user_id: 5, picture_id: 5, smile_point: 0.7)
 UserPicture.create(user_id: 6, picture_id: 5, smile_point: 0.7)
 UserReflect.create(user_id: 5, with: 6)
 UserReflect.create(user_id: 6, with: 5)
 
-Picture.create(event_id: 1, taken_by: 3)
+Picture.create(event_id: 1, taken_by: 3) # 5
 UserPicture.create(user_id: 1, picture_id: 6, smile_point: 0.8)
 UserPicture.create(user_id: 5, picture_id: 6, smile_point: 0.7)
 UserPicture.create(user_id: 6, picture_id: 6, smile_point: 0.7)
@@ -97,6 +97,41 @@ UserReflect.create(user_id: 5, with: 1)
 UserReflect.create(user_id: 5, with: 6)
 UserReflect.create(user_id: 6, with: 5)
 UserReflect.create(user_id: 6, with: 1)
+
+Picture.create(event_id: 1, taken_by: 3) # 6
+UserPicture.create(user_id: 2, picture_id: 6, smile_point: 0.8)
+UserPicture.create(user_id: 3, picture_id: 6, smile_point: 0.6)
+UserPicture.create(user_id: 5, picture_id: 6, smile_point: 0.7)
+UserPicture.create(user_id: 6, picture_id: 6, smile_point: 0.7)
+UserReflect.create(user_id: 2, with: 3)
+UserReflect.create(user_id: 2, with: 5)
+UserReflect.create(user_id: 2, with: 6)
+UserReflect.create(user_id: 3, with: 2)
+UserReflect.create(user_id: 3, with: 5)
+UserReflect.create(user_id: 3, with: 6)
+UserReflect.create(user_id: 5, with: 2)
+UserReflect.create(user_id: 5, with: 3)
+UserReflect.create(user_id: 5, with: 5)
+UserReflect.create(user_id: 6, with: 2)
+UserReflect.create(user_id: 6, with: 3)
+UserReflect.create(user_id: 6, with: 5)
+
+Picture.create(event_id: 1, taken_by: 5) # 7
+UserPicture.create(user_id: 1, picture_id: 7, smile_point: 0.9)
+UserPicture.create(user_id: 6, picture_id: 7, smile_point: 0.8)
+UserReflect.create(user_id: 1, with: 6)
+UserReflect.create(user_id: 6, with: 1)
+
+Picture.create(event_id: 1, taken_by: 2) # 8
+UserPicture.create(user_id: 4, picture_id: 8, smile_point: 0.8)
+UserPicture.create(user_id: 5, picture_id: 8, smile_point: 0.6)
+UserPicture.create(user_id: 6, picture_id: 8, smile_point: 0.9)
+UserReflect.create(user_id: 4, with: 5)
+UserReflect.create(user_id: 4, with: 6)
+UserReflect.create(user_id: 5, with: 4)
+UserReflect.create(user_id: 5, with: 6)
+UserReflect.create(user_id: 6, with: 4)
+UserReflect.create(user_id: 6, with: 5)
 
 AggregateLog.create(user_id: 1, event_id: 1, laugh_std: 0.4, rare_encount_point: 3, taken_picture_with_many_people_point: 7,
                     take_good_picture_point: 4, between_product_interact_point: 8, divercity_point: 7, score: 6)
